@@ -1,15 +1,12 @@
-// This file can be replaced during build by using the `fileReplacements` array.
-// `ng build` replaces `environment.ts` with `environment.prod.ts`.
-// The list of file replacements can be found in `angular.json`.
-
 export const environment = {
   production: false,
-  awsRegion: 'undefined',
-  domainName: 'undefined',
-  cognitoUserPoolId: 'undefined',
-  cognitoAppClientId: 'undefined',
-  redirectSignIn: 'undefined',
-  redirectSignOut: 'undefined',
-  authGuardRedirect: 'undefined',
+  awsRegion: 'local',
+  domainName: 'local',
+  cognitoUserPoolId: 'local',
+  cognitoAppClientId: 'local',
+  redirectSignIn: 'http://localhost:3001/login',
+  redirectSignOut: 'http://localhost:3001/logout',
+  authGuardRedirect: 'http://localhost:3001',
   apiUrl: 'http://localhost:3002',
+  authType: 'none'
 };
