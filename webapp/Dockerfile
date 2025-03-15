@@ -1,11 +1,24 @@
 FROM node:18.20
 
-WORKDIR /root/
+WORKDIR /app
+COPY webapp/package*.json ./
+# Install all dependencies for build 
+RUN npm install
 
-COPY ./build ./build
-COPY package*.json ./
-RUN npm install --omit=dev && npm install express
-COPY server.js ./
+COPY webapp/ .
+# Build the application using the local configuration.
+RUN npm run build-local
+
+# Run Stage
+FROM node:18.20
+
+WORKDIR /root/
+COPY --from=build /app/dist ./build
+COPY webapp/package*.json ./
+COPY webapp/server.js ./
+
+# Install only production dependencies
+RUN npm install --only=production && npm install express
 
 EXPOSE 3001
 
